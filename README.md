@@ -1,15 +1,14 @@
 # Alumni
-Sistem Informasi Alumni berbasis web dengan framework codeigniter.
+Aplikasi Alumni
 
 Untuk Login Administrator : 
 
-> username = admin@admin.com,
-
+> username = admin@alumni.com
 > password = password
 
 Untuk Login Member :
 
-> username = user1@user.com,
+> username = user1@alumni.com,
 
 > password = password
 
