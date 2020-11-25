@@ -7,7 +7,7 @@ Versi 1.0 Beta Tester
 =======
 ![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_1.jpg?raw=true "1")
 ![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_2.jpg?raw=true "2")
-![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_3.jpg.jpg?raw=true "3")
-![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_4.jpg.jpg?raw=true "4")
+![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_3.jpg?raw=true "3")
+![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_4.jpg?raw=true "4")
 
 
