@@ -6,7 +6,7 @@ Data alumni dapat dicetak dimenu admin untuk keperluan sekolah dalam bentuk Exce
 ## INFORMASI APLIKASI
 * Framework / Versi : Codeigniter / 3.1.8 [Url Link](https://codeigniter.com/download)
 * Template Depan    : materialize-landing-page  [Url Link ](https://github.com/tiagosousaeti/materialize-landing-page)
-* Template Cpanel 	: AdminBSBMaterialDesign [Url Link](https://github.com/gurayyarar/)AdminBSBMaterialDesign)
+* Template Cpanel 	: AdminBSBMaterialDesign [Url Link](https://github.com/gurayyarar/AdminBSBMaterialDesign)
 * Library Auth		: Codeiniger-Ion-Auth [Url Link](https://github.com/benedmunds/CodeIgniter-Ion-Auth)
 
 ## WEB SERVER 
