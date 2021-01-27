@@ -20,8 +20,8 @@ class Testimoni_model extends CI_Model
     {
         $this->db->where('is_tampil', 'Ya');
         $this->db->order_by($this->id, $this->order);
-        $this->db->join('users', 'testimoni.id_user = users.id');
-        $this->db->join('profil', 'testimoni.id_user = profil.id_user');
+        $this->db->join('users', 'testimoni.id_user = users.id','left',false);
+        $this->db->join('profil', 'testimoni.id_user = profil.id_user', 'left', false);
 
         return $this->db->get($this->table)->result();
     }

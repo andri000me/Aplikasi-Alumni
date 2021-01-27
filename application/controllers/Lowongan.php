@@ -231,10 +231,10 @@ class Lowongan extends CI_Controller
         if ($row) {
             $this->lowongan->delete($id);
             $this->session->set_flashdata('message','Hapus data berhasil');
-            redirect(site_url('lowongan'));
+            redirect(site_url('lowongan/list_admin'));
         } else {
             $this->session->set_flashdata('message','Data tidak ditemukan');
-            redirect(site_url('lowongan'));
+            redirect(site_url('lowongan/list_admin'));
         }
     }
 

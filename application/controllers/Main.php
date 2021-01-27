@@ -96,6 +96,18 @@ class Main extends CI_Controller
             $this->data['tahun_lulus'] = set_value('tahun_lulus', $detail->tahun_lulus);
             $this->data['no_ijazah'] = set_value('no_ijazah', $detail->no_ijazah);
             $this->data['no_skhun'] = set_value('no_skhun', $detail->no_skhun);
+            $this->data['tempat_lahir'] = set_value('tempat_lahir', $detail->tempat_lahir);
+            $this->data['tanggal_lahir'] = set_value('tanggal_lahir', $detail->tanggal_lahir);
+            $this->data['alamat'] = set_value('alamat', $detail->alamat);
+            $this->data['no_telp'] = set_value('no_telp', $detail->no_telp);
+            $this->data['tahun_masuk'] = set_value('tahun_masuk', $detail->tahun_masuk);
+            $this->data['tahun_lulus'] = set_value('tahun_lulus', $detail->tahun_lulus);
+            $this->data['status'] = set_value('status', $detail->status);
+            $this->data['deskripsi'] = set_value('deskripsi', $detail->deskripsi);
+            $this->data['nama_ayah'] = set_value('nama_ayah', $detail->nama_ayah);
+            $this->data['pekerjaan_ayah'] = set_value('pekerjaan_ayah', $detail->pekerjaan_ayah);
+            $this->data['nama_ibu'] = set_value('nama_ibu', $detail->nama_ibu);
+            $this->data['pekerjaan_ibu'] = set_value('pekerjaan_ibu', $detail->pekerjaan_ibu);
         }
         $this->data['_view'] = 'main/detail_alumni';
 

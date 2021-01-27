@@ -27,6 +27,10 @@
   </div>
   <div class="row m-t-20 m-b--5 align-center">
     <a href="forgot_password"><?php echo lang('login_forgot_password'); ?></a>
-  </div>  
+  </div> 
+    <div class="row m-t-20 m-b--5 align-left">
+    <a href="<?php echo base_url(); ?>"> Back Home</a>
+  </div> 
+
 </div>
 <?php echo form_close(); ?>

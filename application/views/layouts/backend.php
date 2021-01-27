@@ -178,7 +178,7 @@ $uri_string = $this->uri->uri_string();
                         <?php echo anchor('lowongan/list_admin', '<i class="material-icons">work</i><span>Lowongan</span>'); ?>
                     </li>
                     <li <?php echo $segment1 == 'event' ? 'class="active"' : ''; ?>>
-                        <?php echo anchor('event/list_admin', '<i class="material-icons">event</i><span>event</span>'); ?>
+                        <?php echo anchor('event/list_admin', '<i class="material-icons">event</i><span>Event</span>'); ?>
                     </li>
                     <li <?php echo $segment1 == 'testimoni' ? 'class="active"' : ''; ?>>
                         <?php echo anchor('testimoni/list_admin', '<i class="material-icons">record_voice_over</i><span>Testimoni</span>'); ?>

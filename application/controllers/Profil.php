@@ -123,6 +123,7 @@ class Profil extends CI_Controller
         $num_rows = $this->profil->get_num_rows($id_user)->num_rows();
         //echo $this->profil->get_num_rows($id_user)->row()->id;
         if ($num_rows == 1) {
+            $this->session->set_flashdata('message','Data berhasil di ubah');
             $id_profil = $this->profil->get_num_rows($id_user)->row()->id;
             redirect('profil/profil_ubah_data/'.$id_profil.'', 'refresh');
         } else {
@@ -307,7 +308,6 @@ class Profil extends CI_Controller
             'no_skhun' => $this->input->post('no_skhun', true),
             );
 
-            $this->profil->insert($data);
             if($this->profil->insert($data)){
                 $this->session->set_flashdata('message','Data berhasil ditambahkan');
             }
@@ -489,11 +489,13 @@ class Profil extends CI_Controller
             'no_skhun' => $this->input->post('no_skhun', true),
         );
 
-            $this->profil->update($this->input->post('id', true), $data);
+            // $this->profil->update($this->input->post('id', true), $data);
+
             if($this->profil->update($this->input->post('id', true), $data)){
                 $this->session->set_flashdata('message','Data berhasil di ubah');
             }
-            
+                $this->session->set_flashdata('message','Data berhasil di ubah');
+            // print_r('expression');die;
             redirect(site_url('profil/profil_user'));
         }
     }
@@ -562,7 +564,7 @@ class Profil extends CI_Controller
             'deskripsi' => $this->input->post('deskripsi', true),
             );
 
-            $this->status->insert($data);
+
             if($this->status->insert($data)){
                 $this->session->set_flashdata('message','Data berhasil ditambahkan');
             }
@@ -640,8 +642,7 @@ class Profil extends CI_Controller
             'deskripsi' => $this->input->post('deskripsi', true),
         );
 
-            $this->status->ubah_data($this->input->post('id', true), $data);
-            if($this->status->ubah_data($this->input->post('id', true), $data)){
+            if($this->status->update($this->input->post('id', true), $data)){
                 $this->session->set_flashdata('message','Data berhasil di ubah');
             }
             

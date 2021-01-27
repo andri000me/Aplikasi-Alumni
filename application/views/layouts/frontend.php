@@ -110,6 +110,29 @@
         <?php if (isset($_partial_js)) {
         echo $_partial_js;
     } ?>
+
+<!--     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    $('.testiSlide').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 1500,
+        responsive: [{
+            breakpoint: 850,
+            settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                infinite: true,
+            }
+        }]
+    });
+});
+</script> -->
+
     </body>
     
  </html>

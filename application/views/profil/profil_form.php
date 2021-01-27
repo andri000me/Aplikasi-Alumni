@@ -4,8 +4,8 @@
             <div class="block-header">
                 <h2>Profil</h2>
             </div>
-			<?php if (isset($message)) {
-    echo '<div class="alert bg-teal alert-dismissible" role="alert">
+        <?php if (isset($message)) {
+    echo '<div class="alert bg-cyan alert-dismissible" role="alert" id="flash-msg">
 					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 					'.$message.'
 			    </div>';
@@ -143,14 +143,16 @@
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 									<div class="form-group">
 										<div class="form-line">
-										<?php echo form_error('pekerjaan_ayah');
-
+										<?php echo form_error('pekerjaan_ayah'); ?>
+										<select name="pekerjaan_ayah">	
+										<?php
                                             $row_profesi = array();
                                             foreach ($_ref_pekerjaan as $ref) {
                                                 $row_profesi[$ref->nama_profesi] = $ref->nama_profesi;
+                                                echo '<option value="'.$ref->nama_profesi.'">'.$ref->nama_profesi.'</option>';
                                             }
-                                            echo form_dropdown($pekerjaan_ayah, $row_profesi, $pekerjaan_ayah['value']);
                                         ?>
+										</select>
 										</div>
 									</div>
 								</div>
@@ -176,18 +178,21 @@
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 									<div class="form-group">
 										<div class="form-line">
-										<?php echo form_error('pekerjaan_ibu');
-
-                                            $row_profesi = array();
+										<?php echo form_error('pekerjaan_ibu'); ?>
+										<select name = "pekerjaan_ibu">
+										<?php
+										$row_profesi = array();
                                             foreach ($_ref_pekerjaan as $ref) {
                                                 $row_profesi[$ref->nama_profesi] = $ref->nama_profesi;
+                                                echo '<option value="'.$ref->nama_profesi.'">'.$ref->nama_profesi.'</option>';
                                             }
-                                            echo form_dropdown($pekerjaan_ibu, $row_profesi, $pekerjaan_ibu['value']);
-                                        ?>									
+                                        ?>
+										</select>							
 										</div>
 									</div>
 								</div>
 							</div>
+
 						  	<div class="row clearfix">
 								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 									<?php echo form_label('Tahun Masuk'); ?>
@@ -195,15 +200,16 @@
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 									<div class="form-group">
 									<div class="form-line">
-										<?php echo form_error('tahun_masuk');
-
+										<?php echo form_error('tahun_masuk'); ?>
+											<select name = "tahun_masuk">
+											<?php
                                             $row_tahun = array();
                                             foreach ($_ref_tahun as $ref) {
                                                 $row_tahun[$ref->ref_tahun] = $ref->ref_tahun;
+                                                echo '<option value="'.$ref->ref_tahun.'">'.$ref->ref_tahun.'</option>';
                                             }
-                                            echo form_dropdown($tahun_masuk, $row_tahun, $tahun_masuk['value']);
                                         ?>
-										
+										</select>
 									</div>
 									</div>
 								</div>
@@ -215,19 +221,22 @@
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 									<div class="form-group">
 									<div class="form-line">
-										<?php echo form_error('tahun_lulus');
-
+										<?php echo form_error('tahun_lulus'); ?>
+											<select name = "tahun_lulus">
+											<?php
                                             $row_tahun = array();
                                             foreach ($_ref_tahun as $ref) {
                                                 $row_tahun[$ref->ref_tahun] = $ref->ref_tahun;
+                                                echo '<option value="'.$ref->ref_tahun.'">'.$ref->ref_tahun.'</option>';
                                             }
-                                            echo form_dropdown($tahun_lulus, $row_tahun, $tahun_lulus['value']);
                                         ?>
-										
+										</select>
 									</div>
 									</div>
 								</div>
 							</div>
+
+
 						  	<div class="row clearfix">
 								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 									<?php echo form_label('No Ijazah'); ?>
@@ -242,6 +251,7 @@
 									</div>
 								</div>
 							</div>
+
 						  	<div class="row clearfix">
 								<div class="col-lg-2 col-md-2 col-sm-4 col-xs-5 form-control-label">
 									<?php echo form_label('No Skhun'); ?>
@@ -249,7 +259,7 @@
 								<div class="col-lg-10 col-md-10 col-sm-8 col-xs-7">
 									<div class="form-group">
 										<div class="form-line">
-										<?php echo form_error('no_skhun');
+										<?php echo form_error('1no_skhun');
                                             echo form_input($no_skhun);
                                         ?>
 										</div>

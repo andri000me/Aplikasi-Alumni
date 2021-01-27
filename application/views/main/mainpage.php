@@ -6,7 +6,7 @@
 			<?php echo anchor('auth/login', 'Login', 'class="waves-effect waves-light btn-large teal accent-4" data-aos="fade-left"'); ?>
 		</div>
 		<div class="container">
-			<div class="row">			
+			<div class="testiSlide slick-initialized slick-slider" >			
 				<a id="testimoni" class="line"><h4 class="margin h1" data-aos="zoom-out" data-aos-duration="500">Testimoni Alumni</h4></a>
 				
 				<!-- Slideshow container -->
@@ -38,3 +38,4 @@
 		</div>
 		
 </div>
+

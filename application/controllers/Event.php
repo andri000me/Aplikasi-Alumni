@@ -85,7 +85,7 @@ class Event extends CI_Controller
                 $this->template->_render_page('layouts/backend', $this->data);
             } else {
                 $this->session->set_flashdata('message','Data tidak ditemukan');
-                redirect(site_url('event'));
+                redirect(site_url('event/list_admin'));
             }
         }
     }
@@ -146,7 +146,7 @@ class Event extends CI_Controller
 
             $this->event->insert($data);
             $this->session->set_flashdata('message','Data berhasil ditambahkan');
-            redirect(site_url('event'));
+            redirect(site_url('event/list_admin'));
         }
     }
 
@@ -193,7 +193,7 @@ class Event extends CI_Controller
                 $this->template->_render_page('layouts/backend', $this->data);
             } else {
                 $this->session->set_flashdata('message','Data Tidak Ditemukan');
-                redirect(site_url('event'));
+                redirect(site_url('event/list_admin'));
             }
         }
     }
@@ -214,7 +214,7 @@ class Event extends CI_Controller
 
             $this->event->update($this->input->post('id', true), $data);
             $this->session->set_flashdata('message','Data berhasil di ubah');
-            redirect(site_url('event'));
+            redirect(site_url('event/list_admin'));
         }
     }
 
@@ -225,10 +225,10 @@ class Event extends CI_Controller
         if ($row) {
             $this->event->delete($id);
             $this->session->set_flashdata('message','Hapus data berhasil');
-            redirect(site_url('event'));
+            redirect(site_url('event/list_admin'));
         } else {
             $this->session->set_flashdata('message','Data tidak ditemukan');
-            redirect(site_url('event'));
+            redirect(site_url('event/list_admin'));
         }
     }
 

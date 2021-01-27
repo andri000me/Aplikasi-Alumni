@@ -1,9 +1,13 @@
 <div class="container">
 	<div class="row">
 		<a class="line"><h4 class="margin h1" data-aos="zoom-out" data-aos-duration="500">Tentang Aplikasi</h4></a>
-        <p class="justify" data-aos="zoom-in-down" data-aos-duration="500">Ini adalah Sistem Informasi Alumni berbasis web, 
-
+        <p class="center" data-aos="zoom-in-down" data-aos-duration="500">Ini adalah Sistem Informasi Alumni berbasis web, yang digunakan sebagai media pencatatan alumni siswa sekolah / kampus. Sehingga daftar alumni dan status terkini (bekerja dll) dapat diketahui. 
+        Terdapat informasi mengenai kegiatan/event, dan Lowongan pekerjaan bagi yang membutuhkan. 
         </p>
+        <p class="center" data-aos="zoom-in-down" data-aos-duration="500">
+            <b>Data alumni dapat dicetak dimenu admin untuk keperluan sekolah dalam bentuk, Excel, PDF atau langsung Print.</b>
+        </p>
+        <br>
         <p class="justify" data-aos="zoom-in-down" data-aos-duration="500">
 
         </p>
@@ -38,22 +42,29 @@
                     </tr>
                 </tbody>
         </table>
-        <p class="justify" data-aos="zoom-in-down" data-aos-duration="500">
-            <i>Data Text</i>
+        <br>
+            <div class="row">
+        <a class="line"><h4 class="margin h1" data-aos="zoom-out" data-aos-duration="500">INFO !</h4></a>
+        <p class="center"data-aos="zoom-in-down" data-aos-duration="500">
+            <i>
+                <br>
+            Web aplikasi ini digunakan untuk UAS matakuliah Pemrograman web, ITATS
+            </i>
         </p>
+    </div>
     </div>
     <div class="row">
 		<a id="contact" class="line"><h4 class="margin h1" data-aos="zoom-out" data-aos-duration="500">Kontak</h4></a>
 		<div class="col s12 m4">
 			<div class="icon-block">
 		    	<h2 class="center light-blue-text"><i class="material-icons" data-aos="zoom-in-down" data-aos-duration="500">location_on</i></h2>
-		    	<p class="center" data-aos="zoom-in-down" data-aos-duration="500">Alamat</p>
+		    	<p class="center" data-aos="zoom-in-down" data-aos-duration="500"><b>ALAMAT </b></p>
 		    	<p class="center" data-aos="zoom-in-down" data-aos-duration="500">ITATS SURABAYA</p>
                 <h2 class="center light-blue-text"><i class="material-icons" data-aos="zoom-in-down" data-aos-duration="500">phone</i></h2>
-                <p class="center" data-aos="zoom-in-down" data-aos-duration="500">(+62) xxxxxxx</p>
-
+                <p class="center" data-aos="zoom-in-down" data-aos-duration="500">(+62) 8563213123</p>
 		    	<h2 class="center light-blue-text"><i class="material-icons" data-aos="zoom-in-down" data-aos-duration="500">mail</i></h2>
-		    	<p class="center" data-aos="zoom-in-down" data-aos-duration="500">admin@gmail.com</p>
+		    	<p class="center" data-aos="zoom-in-down" data-aos-duration="500">danang.priambodo66@gmail.com</p>
+                <p class="center" data-aos="zoom-in-down" data-aos-duration="500">ferdi.ardhiansyah@gmail.com</p>
 		  	</div>
 	    </div>
 
