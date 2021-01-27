@@ -31,6 +31,11 @@ Data alumni dapat dicetak dimenu admin untuk keperluan sekolah dalam bentuk Exce
 ## LINK DEMO
 * https://alumni.sistem-informasi.online [Url Link](https://alumni.sistem-informasi.online)
 
+## LOGIN 
+* Administrator | username : admin@alumni.com --> password : password
+* User1			| username : user1@alumni.com --> password : password
+* User2			| username : user2@alumni.com --> password : password
+
 ## CONTACT PERSON 
 * Email : danang.priambodo66@gmail.com
 
