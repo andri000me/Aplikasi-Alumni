@@ -4,12 +4,39 @@ Ini adalah Sistem Informasi Alumni berbasis web, yang digunakan sebagai media pe
 Data alumni dapat dicetak dimenu admin untuk keperluan sekolah dalam bentuk Excel / PDF 
 
 ## INFORMASI APLIKASI
-* Framework / Versi : Codeigniter / 3.1.8 [a link](https://codeigniter.com/download)
-* Template Depan    : materialize-landing-page 
+* Framework / Versi : Codeigniter / 3.1.8 [Url Link](https://codeigniter.com/download)
+* Template Depan    : materialize-landing-page  [Url Link ](https://github.com/tiagosousaeti/materialize-landing-page)
+* Template Cpanel 	: AdminBSBMaterialDesign [Url Link](https://github.com/gurayyarar/)AdminBSBMaterialDesign)
+* Library Auth		: Codeiniger-Ion-Auth [Url Link](https://github.com/benedmunds/CodeIgniter-Ion-Auth)
 
-![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_1.jpg?raw=true "1")
-![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_2.jpg?raw=true "2")
-![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_3.jpg?raw=true "3")
-![Alt text](https://github.com/daanangp/Aplikasi-Alumni/blob/master/Screenshoot/Screenshot_4.jpg?raw=true "4")
+## WEB SERVER 
+* LAMP (LINUX)
+* XAMPP (WINDOWS)
+* PHP 7*
+
+## DATABASE
+* SQL
+
+## INSTALLATION INSTRUCTION
+* Download Source Code Aplikasi Sistem Informasi 
+* Install LAMP (Linux) atau XAMPP (Windows)
+* Jalankan di /var/www/html (LAMP) atu di /xampp/htdocs (XAMPP)
+* Import database yang ada didirectory "/sql/alumni.sql"
+
+## CONFIG
+* Buka file config.php yang berada pada directory application/config/config.php
+* Ganti $config['base_url'] = 'http://localhost/sia/'; dengan url anda
+* Lakukan config database melalui file database.php pada directory application/config/database.php
+
+## LINK DEMO
+* https://alumni.sistem-informasi.online [Url Link](https://alumni.sistem-informasi.online)
+
+## CONTACT PERSON 
+* Email : danang.priambodo66@gmail.com
+
+## SCREENSHOOT APLICATION
+* Directory "/Screenshoot"
+
+
 
 
