@@ -29,7 +29,9 @@ Data alumni dapat dicetak dimenu admin untuk keperluan sekolah dalam bentuk Exce
 * Lakukan config database melalui file database.php pada directory application/config/database.php
 
 ## LINK DEMO
-* https://alumni.sistem-informasi.online [Url Link](https://alumni.sistem-informasi.online)
+* https://alumni.sistem-informasi.online 
+Or akses free hosting di :
+* informatics-tech.000webhostapp.com [Url Link](http://informatics-tech.000webhostapp.com)
 
 ## LOGIN 
 * Administrator | username : admin@alumni.com --> password : password
