@@ -1,550 +1,373 @@
--- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Waktu pembuatan: 23 Nov 2020 pada 08.59
--- Versi server: 10.1.37-MariaDB
--- Versi PHP: 7.2.12
+/*
+ Navicat Premium Data Transfer
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+ Source Server         : SQL Saya
+ Source Server Type    : MySQL
+ Source Server Version : 100137
+ Source Host           : localhost:3306
+ Source Schema         : alumni
 
+ Target Server Type    : MySQL
+ Target Server Version : 100137
+ File Encoding         : 65001
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+ Date: 27/01/2021 20:28:28
+*/
 
---
--- Database: `alumni`
---
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Table structure for event
+-- ----------------------------
+DROP TABLE IF EXISTS `event`;
+CREATE TABLE `event`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_event` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `event_title` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `event_slug` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `deskripsi` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tanggal_posting` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
---
--- Struktur dari tabel `event`
---
+-- ----------------------------
+-- Records of event
+-- ----------------------------
+INSERT INTO `event` VALUES (6, 'Jalan Sehat', 'Jalan Sehat', 'jalan-sehat', 'Jalan Sehat 17 Agustus di ITATS.\r\nTempat kumpul di lapangan ITATS\r\n\r\nitats.ac.id\r\n\r\nOke...', '2021-01-27 14:13:48');
+INSERT INTO `event` VALUES (7, 'Seminar IT', 'Seminar IT', 'seminar-it', 'Ayo Seminar 11.', '2021-01-27 14:13:58');
+INSERT INTO `event` VALUES (8, 'Kegiatan Belajar', 'Kegiatan Belajar', 'kegiatan-belajar', 'Ayo belajar di \r\nbrainly.com2255', '2021-01-27 14:11:13');
 
-CREATE TABLE `event` (
-  `id` int(11) NOT NULL,
-  `nama_event` varchar(60) NOT NULL,
-  `event_title` varchar(50) NOT NULL,
-  `event_slug` varchar(60) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `tanggal_posting` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Table structure for groups
+-- ----------------------------
+DROP TABLE IF EXISTS `groups`;
+CREATE TABLE `groups`  (
+  `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `description` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of groups
+-- ----------------------------
+INSERT INTO `groups` VALUES (1, 'admin', 'Administrator');
+INSERT INTO `groups` VALUES (2, 'members', 'General User');
 
---
--- Struktur dari tabel `groups`
---
-
-CREATE TABLE `groups` (
-  `id` mediumint(8) UNSIGNED NOT NULL,
-  `name` varchar(20) NOT NULL,
-  `description` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data untuk tabel `groups`
---
-
-INSERT INTO `groups` (`id`, `name`, `description`) VALUES
-(1, 'admin', 'Administrator'),
-(2, 'members', 'General User');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `kritik_saran`
---
-
-CREATE TABLE `kritik_saran` (
-  `id_kritiksaran` int(10) UNSIGNED NOT NULL,
+-- ----------------------------
+-- Table structure for kritik_saran
+-- ----------------------------
+DROP TABLE IF EXISTS `kritik_saran`;
+CREATE TABLE `kritik_saran`  (
+  `id_kritiksaran` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_user` int(11) UNSIGNED NOT NULL,
-  `kritik` text NOT NULL,
-  `saran` text NOT NULL,
-  `tanggal_posting` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `kritik` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `saran` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tanggal_posting` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id_kritiksaran`) USING BTREE,
+  INDEX `id_user`(`id_user`) USING BTREE,
+  CONSTRAINT `kritik_saran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of kritik_saran
+-- ----------------------------
+INSERT INTO `kritik_saran` VALUES (2, 5, 'Tolong dikembangkan Aplikasinya ini !', 'Diperbaiki tampilan dan fungsinya ya !', '2021-01-27 07:11:11');
 
---
--- Struktur dari tabel `login_attempts`
---
+-- ----------------------------
+-- Table structure for login_attempts
+-- ----------------------------
+DROP TABLE IF EXISTS `login_attempts`;
+CREATE TABLE `login_attempts`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `login` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `time` int(11) UNSIGNED NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
-CREATE TABLE `login_attempts` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `login` varchar(100) NOT NULL,
-  `time` int(11) UNSIGNED DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+-- ----------------------------
+-- Records of login_attempts
+-- ----------------------------
+INSERT INTO `login_attempts` VALUES (11, '::1', 'danang@alumni.com', 1611731124);
+INSERT INTO `login_attempts` VALUES (12, '::1', 'danang.priambodo66@gmail.com', 1611731698);
+INSERT INTO `login_attempts` VALUES (13, '::1', 'danang@alumni.com', 1611745593);
+INSERT INTO `login_attempts` VALUES (14, '::1', 'danang@alumni.com', 1611745605);
 
---
--- Dumping data untuk tabel `login_attempts`
---
+-- ----------------------------
+-- Table structure for lowongan
+-- ----------------------------
+DROP TABLE IF EXISTS `lowongan`;
+CREATE TABLE `lowongan`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_perusahaan` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `job_title` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `job_slug` varchar(60) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `deskripsi` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tanggal_posting` timestamp(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0) ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
-INSERT INTO `login_attempts` (`id`, `ip_address`, `login`, `time`) VALUES
-(2, '::1', 'user1@user1.com', 1606103847),
-(3, '::1', 'administrator', 1606104105),
-(4, '::1', 'administrator', 1606104111),
-(5, '::1', 'user1@user1.com', 1606104415),
-(6, '::1', 'admin', 1606116637),
-(7, '::1', 'admin', 1606116657),
-(10, '::1', 'admin', 1606116827),
-(11, '::1', 'user1', 1606116843),
-(12, '::1', 'asd', 1606116899),
-(13, '::1', 'user1', 1606116910),
-(14, '::1', 'user1', 1606116918);
+-- ----------------------------
+-- Records of lowongan
+-- ----------------------------
+INSERT INTO `lowongan` VALUES (1, 'PT. Indofood', 'IT Staff', 'it-staff', 'Dibutuhkan segera IT Staff dengan Syarat  :\r\n\r\n- Pengalaman 1 Tahun dibidangnya\r\n- S1 Informatika , SMK TKJ\r\n- Memiliki Kemauan Belajar\r\n\r\nJika berminat kirim ke email danang.priambodo66@gmail.com', '2021-01-27 06:47:34');
+INSERT INTO `lowongan` VALUES (2, 'Cv. Tech', 'Freelance', 'freelance', 'Dibutuhkan Freelance :\r\n\r\n- Pengalaman 1 Tahun dibidangnya\r\n- S1 Informatika , SMK TKJ\r\n- Memiliki Kemauan Belajar\r\n\r\nJika berminat kirim ke email ferdi@gmail.com .', '2021-01-27 16:26:15');
+INSERT INTO `lowongan` VALUES (3, 'PT. Digitech', 'Posisi Admin', 'posisi-admin', 'Dibuthkan Freelance\r\n\r\n- Pengalaman 1 Tahun dibidangnya\r\n- minimal S1\r\n- Memiliki Kemauan Belajar\r\n\r\nJika berminat kirim ke email danang.priambodo66@gmail.com', '2021-01-27 06:51:55');
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `lowongan`
---
-
-CREATE TABLE `lowongan` (
-  `id` int(11) NOT NULL,
-  `nama_perusahaan` varchar(50) NOT NULL,
-  `job_title` varchar(50) NOT NULL,
-  `job_slug` varchar(60) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `tanggal_posting` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `profil`
---
-
-CREATE TABLE `profil` (
-  `id` int(11) NOT NULL,
+-- ----------------------------
+-- Table structure for profil
+-- ----------------------------
+DROP TABLE IF EXISTS `profil`;
+CREATE TABLE `profil`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_user` int(11) UNSIGNED NOT NULL,
-  `jenis_kelamin` varchar(10) NOT NULL,
-  `tempat_lahir` varchar(20) NOT NULL,
+  `jenis_kelamin` varchar(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tempat_lahir` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `nisn` int(11) NOT NULL,
-  `alamat` text NOT NULL,
-  `no_telp` varchar(16) NOT NULL,
-  `nama_ayah` varchar(50) NOT NULL,
-  `pekerjaan_ayah` varchar(20) NOT NULL,
-  `nama_ibu` varchar(50) NOT NULL,
-  `pekerjaan_ibu` varchar(20) NOT NULL,
-  `tahun_masuk` varchar(9) NOT NULL,
-  `tahun_lulus` varchar(9) NOT NULL,
-  `no_ijazah` varchar(50) NOT NULL,
-  `no_skhun` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `no_telp` varchar(16) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nama_ayah` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `pekerjaan_ayah` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nama_ibu` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `pekerjaan_ibu` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tahun_masuk` varchar(9) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `tahun_lulus` varchar(9) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `no_ijazah` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `no_skhun` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id_user`(`id_user`) USING BTREE,
+  CONSTRAINT `profil_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of profil
+-- ----------------------------
+INSERT INTO `profil` VALUES (7, 2, 'Perempuan', 'Surabaya 12', '2021-01-27', 2147483647, 'Sidoarjo', '087123123', 'Ayah', 'BELUM/TIDAK BEKERJA', 'Ibu', 'BELUM/TIDAK BEKERJA', '2021', '2021', '123', '1234');
+INSERT INTO `profil` VALUES (8, 4, 'Laki-Laki', 'Sidoarjo', '1999-06-21', 6921023, 'Jl. Gajah Mada, Ngingas Waru, SIdoarjo1', '08623123123123', 'Ayah Danang', 'BELUM/TIDAK BEKERJA', 'Ibu Danang', 'BELUM/TIDAK BEKERJA', '2021', '2021', 'IJZ-123', 'SKHUN-123');
 
---
--- Struktur dari tabel `referensi_profesi`
---
+-- ----------------------------
+-- Table structure for referensi_profesi
+-- ----------------------------
+DROP TABLE IF EXISTS `referensi_profesi`;
+CREATE TABLE `referensi_profesi`  (
+  `id_profesi` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_profesi` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id_profesi`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 89 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
-CREATE TABLE `referensi_profesi` (
-  `id_profesi` int(11) NOT NULL,
-  `nama_profesi` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- ----------------------------
+-- Records of referensi_profesi
+-- ----------------------------
+INSERT INTO `referensi_profesi` VALUES (1, 'BELUM/TIDAK BEKERJA');
+INSERT INTO `referensi_profesi` VALUES (2, 'MENGURUS RUMAH TANGGA');
+INSERT INTO `referensi_profesi` VALUES (3, 'PELAJAR/MAHASISWA');
+INSERT INTO `referensi_profesi` VALUES (4, 'PENSIUNAN');
+INSERT INTO `referensi_profesi` VALUES (5, 'PEGAWAI NEGERI SIPIL');
+INSERT INTO `referensi_profesi` VALUES (6, 'TENTARA NASIONAL INDONESIA');
+INSERT INTO `referensi_profesi` VALUES (7, 'KEPOLISIAN RI');
+INSERT INTO `referensi_profesi` VALUES (8, 'PERDAGANGAN');
+INSERT INTO `referensi_profesi` VALUES (9, 'PETANI/PEKEBUN');
+INSERT INTO `referensi_profesi` VALUES (10, 'PETERNAK');
+INSERT INTO `referensi_profesi` VALUES (11, 'NELAYAN/PERIKANAN');
+INSERT INTO `referensi_profesi` VALUES (12, 'INDUSTRI');
+INSERT INTO `referensi_profesi` VALUES (13, 'KONSTRUKSI');
+INSERT INTO `referensi_profesi` VALUES (14, 'TRANSPORTASI');
+INSERT INTO `referensi_profesi` VALUES (15, 'KARYAWAN SWASTA');
+INSERT INTO `referensi_profesi` VALUES (16, 'KARYAWAN BUMN');
+INSERT INTO `referensi_profesi` VALUES (17, 'KARYAWAN BUMD');
+INSERT INTO `referensi_profesi` VALUES (18, 'KARYAWAN HONORER');
+INSERT INTO `referensi_profesi` VALUES (19, 'BURUH HARIAN LEPAS');
+INSERT INTO `referensi_profesi` VALUES (20, 'BURUH TANI/PERKEBUNAN');
+INSERT INTO `referensi_profesi` VALUES (21, 'BURUH NELAYAN/PERIKANAN');
+INSERT INTO `referensi_profesi` VALUES (22, 'BURUH PETERNAKAN');
+INSERT INTO `referensi_profesi` VALUES (23, 'PEMBANTU RUMAH TANGGA');
+INSERT INTO `referensi_profesi` VALUES (24, 'TUKANG CUKUR');
+INSERT INTO `referensi_profesi` VALUES (25, 'TUKANG LISTRIK');
+INSERT INTO `referensi_profesi` VALUES (26, 'TUKANG BATU');
+INSERT INTO `referensi_profesi` VALUES (27, 'TUKANG KAYU');
+INSERT INTO `referensi_profesi` VALUES (28, 'TUKANG SOL SEPATU');
+INSERT INTO `referensi_profesi` VALUES (29, 'TUKANG LAS/PANDAI BESI');
+INSERT INTO `referensi_profesi` VALUES (30, 'TUKANG JAHIT');
+INSERT INTO `referensi_profesi` VALUES (31, 'TUKANG GIGI');
+INSERT INTO `referensi_profesi` VALUES (32, 'PENATA RIAS');
+INSERT INTO `referensi_profesi` VALUES (33, 'PENATA BUSANA');
+INSERT INTO `referensi_profesi` VALUES (34, 'PENATA RAMBUT');
+INSERT INTO `referensi_profesi` VALUES (35, 'MEKANIK');
+INSERT INTO `referensi_profesi` VALUES (36, 'SENIMAN');
+INSERT INTO `referensi_profesi` VALUES (37, 'TABIB');
+INSERT INTO `referensi_profesi` VALUES (38, 'PARAJI');
+INSERT INTO `referensi_profesi` VALUES (39, 'PERANCANG BUSANA');
+INSERT INTO `referensi_profesi` VALUES (40, 'PENTERJEMAH');
+INSERT INTO `referensi_profesi` VALUES (41, 'IMAM MESJID');
+INSERT INTO `referensi_profesi` VALUES (42, 'PENDETA');
+INSERT INTO `referensi_profesi` VALUES (43, 'PASTOR');
+INSERT INTO `referensi_profesi` VALUES (44, 'WARTAWAN');
+INSERT INTO `referensi_profesi` VALUES (45, 'USTADZ/MUBALIGH');
+INSERT INTO `referensi_profesi` VALUES (46, 'JURU MASAK');
+INSERT INTO `referensi_profesi` VALUES (47, 'PROMOTOR ACARA');
+INSERT INTO `referensi_profesi` VALUES (48, 'ANGGOTA DPR-RI');
+INSERT INTO `referensi_profesi` VALUES (49, 'ANGGOTA DPD');
+INSERT INTO `referensi_profesi` VALUES (50, 'ANGGOTA BPK');
+INSERT INTO `referensi_profesi` VALUES (51, 'PRESIDEN');
+INSERT INTO `referensi_profesi` VALUES (52, 'WAKIL PRESIDEN');
+INSERT INTO `referensi_profesi` VALUES (53, 'ANGGOTA MAHKAMAH KONSTITUSI');
+INSERT INTO `referensi_profesi` VALUES (54, 'ANGGOTA KABINET/KEMENTERIAN');
+INSERT INTO `referensi_profesi` VALUES (55, 'DUTA BESAR');
+INSERT INTO `referensi_profesi` VALUES (56, 'GUBERNUR');
+INSERT INTO `referensi_profesi` VALUES (57, 'WAKIL GUBERNUR');
+INSERT INTO `referensi_profesi` VALUES (58, 'BUPATI');
+INSERT INTO `referensi_profesi` VALUES (59, 'WAKIL BUPATI');
+INSERT INTO `referensi_profesi` VALUES (60, 'WALIKOTA');
+INSERT INTO `referensi_profesi` VALUES (61, 'WAKIL WALIKOTA');
+INSERT INTO `referensi_profesi` VALUES (62, 'ANGGOTA DPRD PROVINSI');
+INSERT INTO `referensi_profesi` VALUES (63, 'ANGGOTA DPRD KABUPATEN/KOTA');
+INSERT INTO `referensi_profesi` VALUES (64, 'DOSEN');
+INSERT INTO `referensi_profesi` VALUES (65, 'GURU');
+INSERT INTO `referensi_profesi` VALUES (66, 'PILOT');
+INSERT INTO `referensi_profesi` VALUES (67, 'PENGACARA');
+INSERT INTO `referensi_profesi` VALUES (68, 'NOTARIS');
+INSERT INTO `referensi_profesi` VALUES (69, 'ARSITEK');
+INSERT INTO `referensi_profesi` VALUES (70, 'AKUNTAN');
+INSERT INTO `referensi_profesi` VALUES (71, 'KONSULTAN');
+INSERT INTO `referensi_profesi` VALUES (72, 'DOKTER');
+INSERT INTO `referensi_profesi` VALUES (73, 'BIDAN');
+INSERT INTO `referensi_profesi` VALUES (74, 'PERAWAT');
+INSERT INTO `referensi_profesi` VALUES (75, 'APOTEKER');
+INSERT INTO `referensi_profesi` VALUES (76, 'PSIKIATER/PSIKOLOG');
+INSERT INTO `referensi_profesi` VALUES (77, 'PENYIAR TELEVISI');
+INSERT INTO `referensi_profesi` VALUES (78, 'PENYIAR RADIO');
+INSERT INTO `referensi_profesi` VALUES (79, 'PELAUT');
+INSERT INTO `referensi_profesi` VALUES (80, 'PENELITI');
+INSERT INTO `referensi_profesi` VALUES (81, 'SOPIR');
+INSERT INTO `referensi_profesi` VALUES (82, 'PIALANG');
+INSERT INTO `referensi_profesi` VALUES (83, 'PARANORMAL');
+INSERT INTO `referensi_profesi` VALUES (84, 'PEDAGANG');
+INSERT INTO `referensi_profesi` VALUES (85, 'PERANGKAT DESA');
+INSERT INTO `referensi_profesi` VALUES (86, 'KEPALA DESA');
+INSERT INTO `referensi_profesi` VALUES (87, 'BIARAWATI');
+INSERT INTO `referensi_profesi` VALUES (88, 'WIRASWASTA');
 
---
--- Dumping data untuk tabel `referensi_profesi`
---
+-- ----------------------------
+-- Table structure for referensi_tahun
+-- ----------------------------
+DROP TABLE IF EXISTS `referensi_tahun`;
+CREATE TABLE `referensi_tahun`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ref_tahun` varchar(9) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
-INSERT INTO `referensi_profesi` (`id_profesi`, `nama_profesi`) VALUES
-(1, 'BELUM/TIDAK BEKERJA'),
-(2, 'MENGURUS RUMAH TANGGA'),
-(3, 'PELAJAR/MAHASISWA'),
-(4, 'PENSIUNAN'),
-(5, 'PEGAWAI NEGERI SIPIL'),
-(6, 'TENTARA NASIONAL INDONESIA'),
-(7, 'KEPOLISIAN RI'),
-(8, 'PERDAGANGAN'),
-(9, 'PETANI/PEKEBUN'),
-(10, 'PETERNAK'),
-(11, 'NELAYAN/PERIKANAN'),
-(12, 'INDUSTRI'),
-(13, 'KONSTRUKSI'),
-(14, 'TRANSPORTASI'),
-(15, 'KARYAWAN SWASTA'),
-(16, 'KARYAWAN BUMN'),
-(17, 'KARYAWAN BUMD'),
-(18, 'KARYAWAN HONORER'),
-(19, 'BURUH HARIAN LEPAS'),
-(20, 'BURUH TANI/PERKEBUNAN'),
-(21, 'BURUH NELAYAN/PERIKANAN'),
-(22, 'BURUH PETERNAKAN'),
-(23, 'PEMBANTU RUMAH TANGGA'),
-(24, 'TUKANG CUKUR'),
-(25, 'TUKANG LISTRIK'),
-(26, 'TUKANG BATU'),
-(27, 'TUKANG KAYU'),
-(28, 'TUKANG SOL SEPATU'),
-(29, 'TUKANG LAS/PANDAI BESI'),
-(30, 'TUKANG JAHIT'),
-(31, 'TUKANG GIGI'),
-(32, 'PENATA RIAS'),
-(33, 'PENATA BUSANA'),
-(34, 'PENATA RAMBUT'),
-(35, 'MEKANIK'),
-(36, 'SENIMAN'),
-(37, 'TABIB'),
-(38, 'PARAJI'),
-(39, 'PERANCANG BUSANA'),
-(40, 'PENTERJEMAH'),
-(41, 'IMAM MESJID'),
-(42, 'PENDETA'),
-(43, 'PASTOR'),
-(44, 'WARTAWAN'),
-(45, 'USTADZ/MUBALIGH'),
-(46, 'JURU MASAK'),
-(47, 'PROMOTOR ACARA'),
-(48, 'ANGGOTA DPR-RI'),
-(49, 'ANGGOTA DPD'),
-(50, 'ANGGOTA BPK'),
-(51, 'PRESIDEN'),
-(52, 'WAKIL PRESIDEN'),
-(53, 'ANGGOTA MAHKAMAH KONSTITUSI'),
-(54, 'ANGGOTA KABINET/KEMENTERIAN'),
-(55, 'DUTA BESAR'),
-(56, 'GUBERNUR'),
-(57, 'WAKIL GUBERNUR'),
-(58, 'BUPATI'),
-(59, 'WAKIL BUPATI'),
-(60, 'WALIKOTA'),
-(61, 'WAKIL WALIKOTA'),
-(62, 'ANGGOTA DPRD PROVINSI'),
-(63, 'ANGGOTA DPRD KABUPATEN/KOTA'),
-(64, 'DOSEN'),
-(65, 'GURU'),
-(66, 'PILOT'),
-(67, 'PENGACARA'),
-(68, 'NOTARIS'),
-(69, 'ARSITEK'),
-(70, 'AKUNTAN'),
-(71, 'KONSULTAN'),
-(72, 'DOKTER'),
-(73, 'BIDAN'),
-(74, 'PERAWAT'),
-(75, 'APOTEKER'),
-(76, 'PSIKIATER/PSIKOLOG'),
-(77, 'PENYIAR TELEVISI'),
-(78, 'PENYIAR RADIO'),
-(79, 'PELAUT'),
-(80, 'PENELITI'),
-(81, 'SOPIR'),
-(82, 'PIALANG'),
-(83, 'PARANORMAL'),
-(84, 'PEDAGANG'),
-(85, 'PERANGKAT DESA'),
-(86, 'KEPALA DESA'),
-(87, 'BIARAWATI'),
-(88, 'WIRASWASTA');
+-- ----------------------------
+-- Records of referensi_tahun
+-- ----------------------------
+INSERT INTO `referensi_tahun` VALUES (1, '2015');
+INSERT INTO `referensi_tahun` VALUES (2, '2016');
+INSERT INTO `referensi_tahun` VALUES (3, '2017');
+INSERT INTO `referensi_tahun` VALUES (4, '2018');
+INSERT INTO `referensi_tahun` VALUES (5, '2019');
+INSERT INTO `referensi_tahun` VALUES (6, '2020');
+INSERT INTO `referensi_tahun` VALUES (7, '2021');
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `referensi_tahun`
---
-
-CREATE TABLE `referensi_tahun` (
-  `id` int(11) NOT NULL,
-  `ref_tahun` varchar(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data untuk tabel `referensi_tahun`
---
-
-INSERT INTO `referensi_tahun` (`id`, `ref_tahun`) VALUES
-(1, '2015'),
-(2, '2016'),
-(3, '2017'),
-(4, '2018'),
-(5, '2019'),
-(6, '2020'),
-(7, '2021');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `status_alumni`
---
-
-CREATE TABLE `status_alumni` (
-  `id` int(10) UNSIGNED NOT NULL,
+-- ----------------------------
+-- Table structure for status_alumni
+-- ----------------------------
+DROP TABLE IF EXISTS `status_alumni`;
+CREATE TABLE `status_alumni`  (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_user` int(10) UNSIGNED NOT NULL,
-  `status` varchar(50) NOT NULL,
-  `deskripsi` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `deskripsi` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `id_users`(`id_user`) USING BTREE,
+  CONSTRAINT `status_alumni_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of status_alumni
+-- ----------------------------
+INSERT INTO `status_alumni` VALUES (7, 2, 'Bekerja', 'Bekerja di Purnamazaaaa');
+INSERT INTO `status_alumni` VALUES (8, 4, 'Bekerja', 'Bekerja di PT. Indofood');
 
---
--- Struktur dari tabel `testimoni`
---
-
-CREATE TABLE `testimoni` (
-  `id_testimoni` int(10) UNSIGNED NOT NULL,
+-- ----------------------------
+-- Table structure for testimoni
+-- ----------------------------
+DROP TABLE IF EXISTS `testimoni`;
+CREATE TABLE `testimoni`  (
+  `id_testimoni` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_user` int(11) UNSIGNED NOT NULL,
-  `testimoni` text NOT NULL,
-  `is_tampil` varchar(5) NOT NULL DEFAULT 'Tidak'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `testimoni` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `is_tampil` varchar(5) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL DEFAULT 'Tidak',
+  PRIMARY KEY (`id_testimoni`) USING BTREE,
+  INDEX `id_user`(`id_user`) USING BTREE,
+  CONSTRAINT `testimoni_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
--- --------------------------------------------------------
+-- ----------------------------
+-- Records of testimoni
+-- ----------------------------
+INSERT INTO `testimoni` VALUES (1, 2, 'Lumayan Aplikasinya', 'Ya');
+INSERT INTO `testimoni` VALUES (2, 3, 'Mantab om Dari alumni 21', 'Ya');
+INSERT INTO `testimoni` VALUES (3, 4, 'OI Oi I Love U', 'Ya');
+INSERT INTO `testimoni` VALUES (4, 5, 'Terima Kasih Admin', 'Ya');
 
---
--- Struktur dari tabel `users`
---
-
-CREATE TABLE `users` (
-  `id` int(11) UNSIGNED NOT NULL,
-  `ip_address` varchar(45) NOT NULL,
-  `username` varchar(100) DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `salt` varchar(255) DEFAULT NULL,
-  `email` varchar(254) NOT NULL,
-  `activation_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_code` varchar(40) DEFAULT NULL,
-  `forgotten_password_time` int(11) UNSIGNED DEFAULT NULL,
-  `remember_code` varchar(40) DEFAULT NULL,
+-- ----------------------------
+-- Table structure for users
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `ip_address` varchar(45) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(254) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `activation_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `forgotten_password_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `forgotten_password_time` int(11) UNSIGNED NULL DEFAULT NULL,
+  `remember_code` varchar(40) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `created_on` int(11) UNSIGNED NOT NULL,
-  `last_login` int(11) UNSIGNED DEFAULT NULL,
-  `active` tinyint(1) UNSIGNED DEFAULT NULL,
-  `first_name` varchar(50) DEFAULT NULL,
-  `last_name` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `last_login` int(11) UNSIGNED NULL DEFAULT NULL,
+  `active` tinyint(1) UNSIGNED NULL DEFAULT NULL,
+  `first_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `last_name` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data untuk tabel `users`
---
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES (1, '127.0.0.1', 'admin', '$2y$08$tXgzdrIacZ1OrTByIPY7CuOTFhKjrj7OwpzDG/hYmC8GdJURLPMIe', '', 'admin@alumni.com', '', 'VHbVi336nbbhtY1eOPl1Re1b629206bb57116b5e', 1611647134, '7awmsrsLMjKFl2kVxXo7xu', 1268889823, 1611745444, 1, 'Admin', 'Aplikasi');
+INSERT INTO `users` VALUES (2, '::1', 'user1', '$2y$08$RHhB.M9KEM2QdSWA9I29XOZqn6vwfxhtze49UG55/8t4iT5TuJM2C', NULL, 'user1@alumni.com', NULL, NULL, NULL, 'Z3roFeoEdWS7HTj8o7i8se', 1545149959, 1611739098, 1, 'user 1', 'user');
+INSERT INTO `users` VALUES (3, '::1', 'user2', '$2y$08$cjmwxcIhPuhcsORwO0wsJOxb5U0ZH11ds.y3FK61obTd/2lli6oau', NULL, 'user2@alumni.com', NULL, NULL, NULL, NULL, 1545287957, 1611649928, 1, 'user 2', 'user');
+INSERT INTO `users` VALUES (4, '::1', 'danang.priambodo66@gmail.com', '$2y$08$jKhWDVgJUQy1kHUD6MBBfOEPJ7jmo3ulHDDeJo/7vB6/rMWdaOjTq', NULL, 'danang@gmail.com', NULL, NULL, NULL, NULL, 1611650421, 1611745628, 1, 'Danang', 'Priambodo');
+INSERT INTO `users` VALUES (5, '::1', 'ferdi@gmail.com', '$2y$08$Fg9awwAk7hlUEQH5IZ39n.bM2qVcWHx5.2kGGdX0ASP3sM5Ib/VDO', NULL, 'ferdi@gmail.com', NULL, NULL, NULL, NULL, 1611665361, 1611704683, 1, 'Ferdi', 'Ardhiansyah');
 
-INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES
-(1, '127.0.0.1', 'admin', '$2y$08$tXgzdrIacZ1OrTByIPY7CuOTFhKjrj7OwpzDG/hYmC8GdJURLPMIe', '', 'admin@alumni.com', '', '-N-QzN8O8CuLVErLYKUPYOb87f501b797d0c121a', 1545139776, '0n54574PA6O3hDcnAHfFgu', 1268889823, 1606117895, 1, 'Admin', 'istrator'),
-(2, '::1', 'user1', '$2y$08$SiQSugQF8NduDBBxvOCOw.UXVRJb3zBo./qzWQ7tlrnwSmnZrpUF6', NULL, 'user1@alumni.com', NULL, NULL, NULL, NULL, 1545149959, 1606116928, 1, 'user 1', 'user'),
-(3, '::1', 'user2', '$2y$08$cjmwxcIhPuhcsORwO0wsJOxb5U0ZH11ds.y3FK61obTd/2lli6oau', NULL, 'user2@alumni.com', NULL, NULL, NULL, NULL, 1545287957, 1546070378, 1, 'user 2', 'user');
-
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `users_groups`
---
-
-CREATE TABLE `users_groups` (
-  `id` int(11) UNSIGNED NOT NULL,
+-- ----------------------------
+-- Table structure for users_groups
+-- ----------------------------
+DROP TABLE IF EXISTS `users_groups`;
+CREATE TABLE `users_groups`  (
+  `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` int(11) UNSIGNED NOT NULL,
-  `group_id` mediumint(8) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `group_id` mediumint(8) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `uc_users_groups`(`user_id`, `group_id`) USING BTREE,
+  INDEX `fk_users_groups_users1_idx`(`user_id`) USING BTREE,
+  INDEX `fk_users_groups_groups1_idx`(`group_id`) USING BTREE,
+  CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
---
--- Dumping data untuk tabel `users_groups`
---
+-- ----------------------------
+-- Records of users_groups
+-- ----------------------------
+INSERT INTO `users_groups` VALUES (26, 1, 1);
+INSERT INTO `users_groups` VALUES (18, 2, 2);
+INSERT INTO `users_groups` VALUES (8, 3, 2);
+INSERT INTO `users_groups` VALUES (23, 4, 2);
+INSERT INTO `users_groups` VALUES (22, 5, 2);
 
-INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES
-(15, 1, 1),
-(12, 2, 2),
-(8, 3, 2);
-
---
--- Indexes for dumped tables
---
-
---
--- Indeks untuk tabel `event`
---
-ALTER TABLE `event`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `groups`
---
-ALTER TABLE `groups`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `kritik_saran`
---
-ALTER TABLE `kritik_saran`
-  ADD PRIMARY KEY (`id_kritiksaran`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indeks untuk tabel `login_attempts`
---
-ALTER TABLE `login_attempts`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `lowongan`
---
-ALTER TABLE `lowongan`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `profil`
---
-ALTER TABLE `profil`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indeks untuk tabel `referensi_profesi`
---
-ALTER TABLE `referensi_profesi`
-  ADD PRIMARY KEY (`id_profesi`);
-
---
--- Indeks untuk tabel `referensi_tahun`
---
-ALTER TABLE `referensi_tahun`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `status_alumni`
---
-ALTER TABLE `status_alumni`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_users` (`id_user`);
-
---
--- Indeks untuk tabel `testimoni`
---
-ALTER TABLE `testimoni`
-  ADD PRIMARY KEY (`id_testimoni`),
-  ADD KEY `id_user` (`id_user`);
-
---
--- Indeks untuk tabel `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `users_groups`
---
-ALTER TABLE `users_groups`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `uc_users_groups` (`user_id`,`group_id`),
-  ADD KEY `fk_users_groups_users1_idx` (`user_id`),
-  ADD KEY `fk_users_groups_groups1_idx` (`group_id`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `event`
---
-ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `groups`
---
-ALTER TABLE `groups`
-  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `kritik_saran`
---
-ALTER TABLE `kritik_saran`
-  MODIFY `id_kritiksaran` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `login_attempts`
---
-ALTER TABLE `login_attempts`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
-
---
--- AUTO_INCREMENT untuk tabel `lowongan`
---
-ALTER TABLE `lowongan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `profil`
---
-ALTER TABLE `profil`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `referensi_profesi`
---
-ALTER TABLE `referensi_profesi`
-  MODIFY `id_profesi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
-
---
--- AUTO_INCREMENT untuk tabel `referensi_tahun`
---
-ALTER TABLE `referensi_tahun`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT untuk tabel `status_alumni`
---
-ALTER TABLE `status_alumni`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT untuk tabel `testimoni`
---
-ALTER TABLE `testimoni`
-  MODIFY `id_testimoni` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT untuk tabel `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT untuk tabel `users_groups`
---
-ALTER TABLE `users_groups`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
---
-
---
--- Ketidakleluasaan untuk tabel `kritik_saran`
---
-ALTER TABLE `kritik_saran`
-  ADD CONSTRAINT `kritik_saran_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `profil`
---
-ALTER TABLE `profil`
-  ADD CONSTRAINT `profil_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `status_alumni`
---
-ALTER TABLE `status_alumni`
-  ADD CONSTRAINT `status_alumni_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `testimoni`
---
-ALTER TABLE `testimoni`
-  ADD CONSTRAINT `testimoni_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ketidakleluasaan untuk tabel `users_groups`
---
-ALTER TABLE `users_groups`
-  ADD CONSTRAINT `fk_users_groups_groups1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_users_groups_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS = 1;
